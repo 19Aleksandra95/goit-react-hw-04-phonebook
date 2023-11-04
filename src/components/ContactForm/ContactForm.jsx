@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import css from './ContactForm.module.css';
 import {FcAdvertising} from "react-icons/fc";
@@ -18,7 +18,7 @@ export const ContactForm = ({addContact}) => {
     const handleFormSubmit = event => {
       event.preventDefault();
   
-      addContact(name, number, nanoid());
+      // addContact(name, number, nanoid());
       resetForm();
     };
   
