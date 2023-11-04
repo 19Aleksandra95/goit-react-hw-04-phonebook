@@ -12,6 +12,7 @@ export const ContactForm = ({addContact}) => {
  
     // Metoda odnowienia pola input
     const handleChange = event => setName(() => event.target.value);
+    const handleNumberChange = event => setNumber(() => event.target.value);
   
     // Sposób przesyłania formularzy
     const handleFormSubmit = event => {
@@ -51,7 +52,7 @@ export const ContactForm = ({addContact}) => {
               type="tel"
               name="number"
               value={number}
-              onChange={handleChange}
+              onChange={handleNumberChange}
               pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
