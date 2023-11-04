@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ContactForm } from "./ContactForm/ContactForm";
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 import css from './App.module.css';
@@ -27,25 +27,23 @@ useEffect (() => {
 
 
   //Sposób przetwarzania formularza - dodanie danych do stanu (dane pobierane są z komponentu ContactForm)
-  const formSubmitHandler = data => {
-    console.log(data);
-    //Uniemożliwia dodawanie kontaktów, których nazwy znajdują się już w książce telefonicznej.
-    if (contacts.some(contact => contact.name === data.name)) {
-      alert(`${data.name} is already in contacts.`);
+  const addContact = (name, number, id) => {
+    if (
+      contacts.find(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      )
+    ) {
+      alert(`${name} is already in contacts.`);
       return;
     }
-     setContacts({
-      contacts: [
-        ...contacts,
-        { id: generetedId(), name: data.name, number: data.number },
-      ],
-    });
+
+    setContacts(prevState => [...prevState, { name, number, id }]);
   };
 
   //Funkcja nanoid() pobiera opcjonalny argument określający długość id
-  const generetedId = () => {
-    return nanoid(5);
-  };
+  // const generetedId = () => {
+  //   return nanoid(5);
+  // };
 
   // Metoda aktualizacji pola filtru
   const handleChangeFilter = event => {
@@ -82,7 +80,7 @@ setFilter(() => event.target.value)
         }}
       >
         <h1 className={css.title}>Phonebook</h1>
-        <ContactForm onSubmit={formSubmitHandler} />
+        <ContactForm onSubmit={addContact} />
         <h2 className={css.subtitle}>Contacts</h2>
         <p className={css.total}>
           Total contacts:
