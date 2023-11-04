@@ -9,10 +9,7 @@ export const ContactForm = ({addContact}) => {
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-    // state = {
-    //   name: '',
-    //   number: '',
-    // };
+ 
     // Metoda odnowienia pola input
     const handleChange = event => setName(() => event.target.value);
   

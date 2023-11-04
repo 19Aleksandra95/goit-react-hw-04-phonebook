@@ -53,22 +53,18 @@ setFilter(() => event.target.value)
   };
 
   //Metoda filtracji kontaktów
-  // const filterContacts = () => {
-  //   return contacts.filter(contact => {
-  //     return contact.name.toLowerCase().includes(filter.toLowerCase());
-  //   });
-  // };
+
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
   );
 
   //Sposób usuwania kontaktu z listy kontaktów
-  const deleteContact = name => {
-    const deleteContacts = contacts.filter(contact => {
-      return contact.name.toLowerCase() !== name.toLowerCase();
-    });
-
-    setContacts(() => [...deleteContacts]);
+  const deleteContact = id => {
+    setContacts(prevState =>
+      prevState.filter(contact => {
+        return contact.id !== id;
+      })
+    );
   };
 
 
@@ -93,7 +89,7 @@ setFilter(() => event.target.value)
           <span className={css.total_count}> {contacts.length}</span>
         </p>
         <Filter value={filter} onChange={handleChangeFilter} />
-        <ContactList filteredContacts={filteredContacts} deleteContact={deleteContact} />
+        <ContactList filteredContacts={filteredContacts} onDeleteContact={deleteContact} />
       </div>
     );
   }
